@@ -1,0 +1,12 @@
+Note:
+
+The CSV file formatting has been slightly adjusted to fit with the system.
+The current formatting is:
+
+Header:
+"label";"label";"label";"label";"label";"label";"label";"label";
+
+Body:
+"value";"value";"value";"value";"value";"value";"value";"value";
+
+This change does not affect the values. The original values have been preserved.

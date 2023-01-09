@@ -10,6 +10,10 @@ from sklearn.linear_model import LogisticRegression
 from deep_learning import DeepNetwork
 
 
+# This file is used to create different machine learning models
+
+# The next few functions are self explanatory and therefore not described closer
+
 def create_svm(x_train, y_train):
     svm = SVC(gamma='auto')
     svm.fit(x_train, y_train)
@@ -54,6 +58,7 @@ def create_deep_network(x_train, y_train, input_size, output_size, size: int, de
     return network
 
 
+# Creates and groups classification models to be used in a for loop
 def create_models_classification(x_train, y_train):
     # Trains classification models
 
@@ -66,6 +71,7 @@ def create_models_classification(x_train, y_train):
     return [svm, gnb, knn, dt, rf]
 
 
+# Unused
 def create_models_regression(x_train, y_train):
     # Trains regression models
 

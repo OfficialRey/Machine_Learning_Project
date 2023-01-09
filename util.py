@@ -6,12 +6,16 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 
+# This file is used to store helper functions to ease certain processes
+
+# Loads a training data csv file and converts it to training data
 def get_dataset(csv_file: str):
     labels, x_train, y_train = get_training_data(csv_file)
     x_train, x_test, y_train, y_test = train_test_split(x_train, y_train, test_size=0.1)
     return x_train, y_train, x_test, y_test, labels
 
 
+# Encodes labels from strings to digits -> [0,1,2,3,4]
 def encode_labels(y_train: numpy.ndarray, y_test):
     temp = numpy.append(y_train, y_test)
     encoder = LabelEncoder()
@@ -21,6 +25,7 @@ def encode_labels(y_train: numpy.ndarray, y_test):
     return y_train, y_test, encoder
 
 
+# One hot encodes y_data -> [[1,0,0],[0,1,0],[0,0,1]]
 def one_hot_encode(y_train, y_test, classes: Union[LabelEncoder, int]):
     if isinstance(classes, LabelEncoder):
         classes = len(classes.classes_)
@@ -29,6 +34,7 @@ def one_hot_encode(y_train, y_test, classes: Union[LabelEncoder, int]):
     return y_train, y_test
 
 
+# Converts a csv file to usable training data
 def get_training_data(csv_file: str):
     x = []
     y = []
@@ -54,6 +60,7 @@ def get_training_data(csv_file: str):
         raise FileNotFoundError(f"Unable to find file {csv_file}")
 
 
+# Gets testing data by splitting training data
 def get_testing_data(x, y, test_amount: float = 0.1):
     train_len = len(x)
     test_len = int(train_len * test_amount)
@@ -64,6 +71,7 @@ def get_testing_data(x, y, test_amount: float = 0.1):
     return x, y, x_test, y_test
 
 
+# Tests a model by calculating its accuracy, average loss, mse and rmse
 def test_model(model: Any, x_test: List[List[float]], y_test: List[int]):
     x_test = list(x_test)
     y_test = list(y_test)

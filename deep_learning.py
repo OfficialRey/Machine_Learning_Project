@@ -4,9 +4,11 @@ from keras.layers import Dense, ReLU, Activation
 from keras.optimizers import Adam
 
 
+# This file is used to create a deep neural network for the given classification problems
 class DeepNetwork:
     model: Sequential
 
+    # Create and train a network using given parameters
     def __init__(self, x_train, y_train, input_size, output_size, size: int, depth: int,
                  output_activation_function: str,
                  metrics: List[str], loss: Union[str, Any], epochs: int, steps_per_epoch: int, verbose="auto"):
@@ -23,6 +25,7 @@ class DeepNetwork:
         )
         self.train_network(x_train, y_train, epochs, steps_per_epoch, verbose=verbose)
 
+    # Create a dense network with given parameters
     def _create_dense_network(self, input_size: Any, output_size: Any, size: int, depth: int,
                               output_activation_function: str, loss: str, metrics: List[str]):
         input_layer = Input(input_size)
@@ -43,9 +46,11 @@ class DeepNetwork:
             metrics=metrics
         )
 
+    # Train a network with given parameters
     def train_network(self, x_train, y_train, epochs: int, steps_per_epoch: int, verbose="auto"):
         self.model.fit(x_train, y_train, epochs=epochs, steps_per_epoch=steps_per_epoch, verbose=verbose)
 
+    # Test metrics of the model
     def test_network(self, x_test, y_test, verbose=1):
         if verbose > 0:
             print("Testing model.")
